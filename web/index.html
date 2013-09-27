@@ -1,0 +1,64 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+
+        <meta charset="utf-8">
+
+        <script>
+            url = "http://localhost:8080/MonteCarloWebService/rest/MonteCarlo";
+            function setRandoms()
+            {
+                var xmlhttp;
+                if (window.XMLHttpRequest)
+                {// code for IE7+, Firefox, Chrome, Opera, Safari
+                    xmlhttp = new XMLHttpRequest();
+                }
+                else
+                {// code for IE6, IE5
+                    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                }
+               
+                xmlhttp.open("PUT", url, false);
+                xmlhttp.setRequestHeader("Content-Type", "text/plain");
+                xmlhttp.send(document.getElementById("myLabel").value);
+                
+            }
+            function getPI()
+            {
+                 var xmlhttp;
+                if (window.XMLHttpRequest)
+                {// code for IE7+, Firefox, Chrome, Opera, Safari
+                    xmlhttp = new XMLHttpRequest();
+                }
+                else
+                {// code for IE6, IE5
+                    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                }
+               
+                xmlhttp.open("GET", url+"/get?randoms="+document.getElementById("myLabel").value, false);
+                xmlhttp.send();
+                document.getElementById("myLabelrandoms").value = xmlhttp.responseText;
+            }
+        </script>
+    </head>
+    <body>
+        <div>
+            <form name="Formular" action="">
+                
+                Number of random numbers: <input id="myLabel" type="text" name="Eingabe" size="20"> 
+                
+                
+                <br/>
+               
+                <input type="button" value="Pi berechnen" onclick="getPI()">
+                <br/>
+                PI: <input type="text"  id="myLabelrandoms">
+            </form>
+        </div>
+    </body>
+</html>
